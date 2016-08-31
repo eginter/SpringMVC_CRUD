@@ -36,13 +36,12 @@ public class TripFileDAO {
 			String line = buf.readLine();
 			while ((line = buf.readLine()) != null) {
 				String[] tokens = line.split(",");
-				int index = Integer.parseInt(tokens[0]);
 				String city = tokens[1];
 				String state = tokens[2];
 				String startDate = tokens[3];
 				String endDate = tokens[4];
 				System.out.println("" + city + state + startDate + endDate);
-				trips.add(new Trip(index, city, state, startDate, endDate));
+				trips.add(new Trip(city, state, startDate, endDate));
 			}
 		} catch (Exception e) {
 			System.err.println(e);
@@ -57,6 +56,10 @@ public class TripFileDAO {
 
 	public void setTrips(ArrayList<Trip> trips) {
 		this.trips = trips;
+	}
+
+	public void addTrip(Trip trip) {
+		trips.add(trip);
 	}
 
 

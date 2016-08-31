@@ -1,14 +1,19 @@
 package data;
 
 public class Trip {
+	private static int counter;
 	private int index;
 	private String city;
 	private String state;
 	private String startDate;
 	private String endDate;
 	
-	public Trip(int index, String city, String state, String startDate, String endDate) {
-		this.setIndex(index);
+	public Trip(){
+		
+	}
+	
+	public Trip(String city, String state, String startDate, String endDate) {
+		this.setIndex(++counter);
 		this.city = city;
 		this.state = state;
 		this.startDate = startDate;
@@ -43,5 +48,11 @@ public class Trip {
 	}
 	public void setIndex(int index) {
 		this.index = index;
+	}
+	public static int getCounter() {
+		return counter;
+	}
+	public static void setCounter(int counter) {
+		Trip.counter = counter;
 	}
 }

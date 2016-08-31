@@ -1,19 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Trip List</title>
-
 </head>
+<nav>
+	<ul>
+		<li><a href="add.jsp">Add</a></li>
+		<li><a href="edit.jsp">Edit</a></li>
+		<li><a href="results.jsp">List</a></li>
+	</ul>
+</nav>
+
 <body>
-<h1>${trips}</h1>
+<h1>${sessionScope.triplist}</h1>
+<c:out value="${sessionScope.userSession}"/>
 <div>
-	<c:forEach items="${trips}" var="item">
-   		 ${item.city} <br>
-	</c:forEach>
+	<ul>
+		<c:forEach var="trip" items="${sessionScope.triplist}">
+					<li>${trip.city}</li>
+		</c:forEach>
+	</ul>
 </div>
 </body>
 </html>
