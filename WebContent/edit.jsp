@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Add Trip</title>
+<title>Insert title here</title>
 </head>
 <nav>
 	<ul>
@@ -14,18 +15,15 @@
 	</ul>
 </nav>
 <body>
-<form action="AddTrip.do" method="GET">
-		City:
-		<input type="text" name="city" value="Macon"/><br/>
-		State:
-		<input type="text" name="name" value="GA"/><br/>
-		Start: 
-		<input type="text" name="startDate" value="20161212"/><br/>
-		End:
-		<input type="text" name="endDate" value="20161225"/><br/>
-		
-		<input type="submit" value="Add State" />
+<div>
+	<form action="editview.jsp" method="GET">
+		<ul>
+			<c:forEach var="trip" items="${sessionScope.triplist}">
+					<li><input type="submit" name="tripID" value="${trip.index}">${trip.city}</li>
+			</c:forEach>
+		</ul>
 	</form>
+</div>
 
 </body>
 </html>
