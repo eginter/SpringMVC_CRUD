@@ -19,7 +19,7 @@
 	<form action="editview.jsp" method="GET">
 		<ul>
 			<c:forEach var="trip" items="${sessionScope.triplist}">
-					<li><input type="submit" name="tripID" value="${trip.index}">${trip.city}</li>
+					<li><input type="submit" name="tripID" value="${trip.key}">${trip.value.city}</li>
 			</c:forEach>
 		</ul>
 	</form>

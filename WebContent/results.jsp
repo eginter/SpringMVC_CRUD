@@ -17,12 +17,11 @@
 </nav>
 
 <body>
-
 <div>
 	<ul>
 		<c:forEach var="trip" items="${sessionScope.triplist}">
-					<li>${trip.city}</li>
-		</c:forEach>
+					<li>${trip.value.city}</li>
+			</c:forEach>
 	</ul>
 </div>
 </body>

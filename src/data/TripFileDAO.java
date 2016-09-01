@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -12,7 +14,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 public class TripFileDAO {
 	private static final String FILE_NAME = "/WEB-INF/travel.csv";
-	private ArrayList<Trip> trips = new ArrayList<>();
+	private HashMap<Integer, Trip> trips = new HashMap<>();
 	/*
 	 * Use Autowired to have Spring inject an instance of a
 	 * WebApplicationContext into this object after creation. We will use the
@@ -34,6 +36,7 @@ public class TripFileDAO {
 				BufferedReader buf = new BufferedReader(new InputStreamReader(is));
 				) {
 			String line = buf.readLine();
+			int index = 1;
 			while ((line = buf.readLine()) != null) {
 				String[] tokens = line.split(",");
 				String city = tokens[1];
@@ -41,7 +44,7 @@ public class TripFileDAO {
 				String startDate = tokens[3];
 				String endDate = tokens[4];
 				System.out.println("" + city + state + startDate + endDate);
-				trips.add(new Trip(city, state, startDate, endDate));
+				trips.put(index++, new Trip(city, state, startDate, endDate));
 			}
 		} catch (Exception e) {
 			System.err.println(e);
@@ -50,27 +53,32 @@ public class TripFileDAO {
 		}
 	}
 
-	public ArrayList<Trip> getTrips() {
-		return trips;
-	}
-
-	public void setTrips(ArrayList<Trip> trips) {
-		this.trips = trips;
-	}
+	
 
 	public void addTrip(Trip trip) {
-		trips.add(trip);
+		trips.put(trip.getIndex(), trip);
 	}
 	
 	public Trip getTripByIndex(int index) {
 		System.out.println("DEBUG: in getTripByIndex index: " + index);
-		for (Trip trip : trips) {
-			if (trip.getIndex() == index) {
-				return trip;
+		
+		for (int key : trips.keySet()) {
+			if (trips.get(key).getIndex() == index){
+				return trips.get(key);
 			}
 		}
 		return null;
 	
+	}
+
+	public HashMap<Integer, Trip> getTrips() {
+		return trips;
+	}
+
+
+
+	public void setTrips(HashMap<Integer, Trip> trips) {
+		this.trips = trips;
 	}
 
 	

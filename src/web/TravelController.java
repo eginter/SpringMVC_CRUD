@@ -1,7 +1,8 @@
 package web;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,9 +21,9 @@ import data.TripFileDAO;
 public class TravelController {
 
 	@ModelAttribute("triplist")
-	public List<Trip> initList() {
+	public HashMap<Integer, Trip> initList() {
 		System.out.println("DEBUG: initList");
-		List<Trip> trips = tripDao.getTrips();
+		HashMap<Integer, Trip> trips = tripDao.getTrips();
 		return trips;
 	}
 
@@ -30,7 +31,7 @@ public class TravelController {
 	private TripFileDAO tripDao;
 
 	@RequestMapping("GetTrip.do")
-	public ModelAndView loadTrip(@ModelAttribute("triplist") ArrayList<Trip> trips) {
+	public ModelAndView loadTrip(@ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
 		ModelAndView mv = new ModelAndView("results.jsp");
 		System.out.println(trips);
 		mv.addObject("trips", trips);
@@ -39,7 +40,7 @@ public class TravelController {
 	}
 
 	@RequestMapping(path = "AddTrip.do", method = RequestMethod.POST)
-	public ModelAndView addTrip(Trip trip, @ModelAttribute("triplist") ArrayList<Trip> trips) {
+	public ModelAndView addTrip(Trip trip, @ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
 		tripDao.addTrip(trip);
 		trips = tripDao.getTrips();
 		System.out.println("Adding Trip");
@@ -51,11 +52,11 @@ public class TravelController {
 	public ModelAndView editTrip(@RequestParam("index") int index, @RequestParam("city") String city,
 			@RequestParam("state") String state, @RequestParam("startDate") String startDate,
 			@RequestParam("endDate") String endDate, @RequestParam(value = "delete", required = false) String delete,
-			@ModelAttribute("triplist") ArrayList<Trip> trips) {
+			@ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
 		System.out.println("Index is : " + index);
 		Trip temp = tripDao.getTripByIndex(index);
 		if (delete != null) {
-			trips.remove(temp);
+			trips.remove(index);
 		} else {
 			System.out.println("In else block");
 			temp.setCity(city);

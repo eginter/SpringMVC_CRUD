@@ -19,12 +19,12 @@
 	<form action="EditTrip.do" method="POST">
 		<c:forEach var="trip" items="${sessionScope.triplist}">
 			<c:choose>
-    				<c:when test="${param.tripID == trip.index}">
-        				<li><input type="text" name="city" value="${trip.city}"></li>
-        				<li><input type="text" name="state" value="${trip.state}"></li>
-        				<li><input type="text" name="startDate" value="${trip.startDate}"></li>
-        				<li><input type="text" name="endDate" value="${trip.endDate}"></li>
-        				<li><input type="hidden" name="index" value="${trip.index}"></li>
+    				<c:when test="${param.tripID == trip.value.index}">
+        				<li><input type="text" name="city" value="${trip.value.city}"></li>
+        				<li><input type="text" name="state" value="${trip.value.state}"></li>
+        				<li><input type="text" name="startDate" value="${trip.value.startDate}"></li>
+        				<li><input type="text" name="endDate" value="${trip.value.endDate}"></li>
+        				<li><input type="hidden" name="index" value="${trip.value.index}"></li>
         				<li><input type="submit" value="submit"></li>
 					<li>	<input type="submit" name="delete" value="Delete"></li>		
     				</c:when>
