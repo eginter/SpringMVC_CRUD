@@ -9,7 +9,7 @@ public class Trip {
 	private String endDate;
 	
 	public Trip(){
-		
+		this.index = ++counter;
 	}
 	
 	public Trip(String city, String state, String startDate, String endDate) {

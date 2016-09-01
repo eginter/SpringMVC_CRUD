@@ -37,18 +37,44 @@ public class TravelController {
 		System.out.println("Loaded trip");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "AddTrip.do", method = RequestMethod.POST)
-	public ModelAndView addTrip(@RequestParam("city") String city,
-								@RequestParam("state") String state,
-								@RequestParam("startDate") String startDate,
-								@RequestParam("endDate") String endDate,
-								@ModelAttribute("triplist") ArrayList<Trip> trips){
-		tripDao.addTrip(new Trip(city,state,startDate,endDate));
+	public ModelAndView addTrip(@RequestParam("city") String city, @RequestParam("state") String state,
+			@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate,
+			@ModelAttribute("triplist") ArrayList<Trip> trips) {
+		tripDao.addTrip(new Trip(city, state, startDate, endDate));
 		trips = tripDao.getTrips();
 		System.out.println("Adding Trip");
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("results.jsp");
+		ModelAndView mv = new ModelAndView("results.jsp");
 		return mv;
+	}
+
+	@RequestMapping(path = "EditTrip.do", method = RequestMethod.POST)
+	public ModelAndView editTrip(@RequestParam("index") int index, @RequestParam("city") String city,
+			@RequestParam("state") String state, @RequestParam("startDate") String startDate,
+			@RequestParam("endDate") String endDate, @RequestParam(value = "delete", required=false) String delete, @ModelAttribute("triplist") ArrayList<Trip> trips) {
+		System.out.println("Index is : " + index);
+		Trip temp = tripDao.getTripByIndex(index);
+		temp.setCity(city);
+		temp.setState(state);
+		temp.setStartDate(startDate);
+		temp.setEndDate(endDate);
+		System.out.println("Editing Trip");
+		System.out.println("delete = " + delete);
+		if (delete.equals("Delete")) {
+			trips.remove(temp);
+		}
+		ModelAndView mv = new ModelAndView("results.jsp");
+		return mv;
+	}
+	
+	@RequestMapping(path = "DeleteTrip.do", method = RequestMethod.POST)
+	public ModelAndView deleteTrip(@ModelAttribute("triplist") ArrayList<Trip> trips, @RequestParam("index") int index){
+		System.out.println("Debug: in Delete controller");
+		Trip temp = tripDao.getTripByIndex(index);
+		trips.remove(temp);
+		ModelAndView mv = new ModelAndView("results.jsp");
+		return mv;
+		
 	}
 }

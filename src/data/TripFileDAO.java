@@ -61,6 +61,18 @@ public class TripFileDAO {
 	public void addTrip(Trip trip) {
 		trips.add(trip);
 	}
+	
+	public Trip getTripByIndex(int index) {
+		System.out.println("DEBUG: in getTripByIndex index: " + index);
+		for (Trip trip : trips) {
+			if (trip.getIndex() == index) {
+				return trip;
+			}
+		}
+		return null;
+	
+	}
 
+	
 
 }

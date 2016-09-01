@@ -16,11 +16,19 @@
 </nav>
 <div>
 	<ul>
-	<form>
+	<form action="EditTrip.do" method="POST">
 		<c:forEach var="trip" items="${sessionScope.triplist}">
 			<c:choose>
     				<c:when test="${param.tripID == trip.index}">
-        				<li>${trip.city}</li>
+        				<li><input type="text" name="city" value="${trip.city}"></li>
+        				<li><input type="text" name="state" value="${trip.state}"></li>
+        				<li><input type="text" name="startDate" value="${trip.startDate}"></li>
+        				<li><input type="text" name="endDate" value="${trip.endDate}"></li>
+        				<li><input type="hidden" name="index" value="${trip.index}"></li>
+        				<li><input type="submit" value="submit"></li>
+					<form action="DeleteTrip.do" method="POST">
+						<input type="submit" name="delete" value="Delete">
+					</form>
     				</c:when>
 			</c:choose>
 		</c:forEach>
