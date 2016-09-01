@@ -13,7 +13,8 @@ public class Trip {
 	}
 	
 	public Trip(String city, String state, String startDate, String endDate) {
-		this.setIndex(++counter);
+		this.index = ++counter;
+		System.out.println("making trip objs: " + counter);
 		this.city = city;
 		this.state = state;
 		this.startDate = startDate;

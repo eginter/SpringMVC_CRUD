@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,9 +38,13 @@ public class TravelController {
 		return mv;
 	}
 	
-	@RequestMapping("AddTrip.do")
-	public ModelAndView addTrip(Trip trip, @ModelAttribute("triplist") ArrayList<Trip> trips){
-		tripDao.addTrip(trip);
+	@RequestMapping(path = "AddTrip.do", method = RequestMethod.POST)
+	public ModelAndView addTrip(@RequestParam("city") String city,
+								@RequestParam("state") String state,
+								@RequestParam("startDate") String startDate,
+								@RequestParam("endDate") String endDate,
+								@ModelAttribute("triplist") ArrayList<Trip> trips){
+		tripDao.addTrip(new Trip(city,state,startDate,endDate));
 		trips = tripDao.getTrips();
 		System.out.println("Adding Trip");
 		ModelAndView mv = new ModelAndView();

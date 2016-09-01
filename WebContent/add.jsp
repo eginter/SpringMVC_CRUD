@@ -14,11 +14,11 @@
 	</ul>
 </nav>
 <body>
-<form action="AddTrip.do" method="GET">
+<form action="AddTrip.do" method="POST">
 		City:
 		<input type="text" name="city" value="Macon"/><br/>
 		State:
-		<input type="text" name="name" value="GA"/><br/>
+		<input type="text" name="state" value="GA"/><br/>
 		Start: 
 		<input type="text" name="startDate" value="20161212"/><br/>
 		End:
