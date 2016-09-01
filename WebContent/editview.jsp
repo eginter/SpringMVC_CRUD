@@ -26,9 +26,7 @@
         				<li><input type="text" name="endDate" value="${trip.endDate}"></li>
         				<li><input type="hidden" name="index" value="${trip.index}"></li>
         				<li><input type="submit" value="submit"></li>
-					<form action="DeleteTrip.do" method="POST">
-						<input type="submit" name="delete" value="Delete">
-					</form>
+					<li>	<input type="submit" name="delete" value="Delete"></li>		
     				</c:when>
 			</c:choose>
 		</c:forEach>

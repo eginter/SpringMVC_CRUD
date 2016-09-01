@@ -17,8 +17,7 @@
 </nav>
 
 <body>
-<h1>${sessionScope.triplist}</h1>
-<c:out value="${sessionScope.userSession}"/>
+
 <div>
 	<ul>
 		<c:forEach var="trip" items="${sessionScope.triplist}">
