@@ -17,6 +17,7 @@
 </nav>
 
 <body>
+
 <div>
 	<ul>
 		<c:forEach var="trip" items="${sessionScope.triplist}">

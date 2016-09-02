@@ -1,10 +1,10 @@
 package web;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +30,7 @@ public class TravelController {
 	@Autowired
 	private TripFileDAO tripDao;
 
+
 	@RequestMapping("GetTrip.do")
 	public ModelAndView loadTrip(@ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
 		ModelAndView mv = new ModelAndView("results.jsp");
@@ -40,18 +41,21 @@ public class TravelController {
 	}
 
 	@RequestMapping(path = "AddTrip.do", method = RequestMethod.POST)
-	public ModelAndView addTrip(Trip trip, @ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
-		tripDao.addTrip(trip);
-		trips = tripDao.getTrips();
+	public ModelAndView addTrip(@RequestParam("city") String city,
+			@RequestParam("state") String state, @RequestParam("startDate") @DateTimeFormat(pattern = "MM/dd/yyyy") LocalDate startDate,
+			@RequestParam("endDate") @DateTimeFormat(pattern = "MM/dd/yyyy") LocalDate endDate, @ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
 		System.out.println("Adding Trip");
+		//tripDao.addTrip(trip);
+		tripDao.addTrip(new Trip(city,state,startDate,endDate));
+		trips = tripDao.getTrips();
 		ModelAndView mv = new ModelAndView("results.jsp");
 		return mv;
 	}
 
 	@RequestMapping(path = "EditTrip.do", method = RequestMethod.POST)
 	public ModelAndView editTrip(@RequestParam("index") int index, @RequestParam("city") String city,
-			@RequestParam("state") String state, @RequestParam("startDate") String startDate,
-			@RequestParam("endDate") String endDate, @RequestParam(value = "delete", required = false) String delete,
+			@RequestParam("state") String state, @RequestParam("startDate") LocalDate startDate,
+			@RequestParam("endDate") LocalDate endDate, @RequestParam(value = "delete", required = false) String delete,
 			@ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
 		System.out.println("Index is : " + index);
 		Trip temp = tripDao.getTripByIndex(index);

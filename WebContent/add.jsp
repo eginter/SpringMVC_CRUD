@@ -20,9 +20,9 @@
 		State:
 		<input type="text" name="state" value="GA"/><br/>
 		Start: 
-		<input type="text" name="startDate" value="20161212"/><br/>
+		<input type="date" name="startDate" value="20161212"/><br/>
 		End:
-		<input type="text" name="endDate" value="20161225"/><br/>
+		<input type="date" name="endDate" value="20161225"/><br/>
 		
 		<input type="submit" value="Add State" />
 	</form>

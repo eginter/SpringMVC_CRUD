@@ -3,9 +3,9 @@ package data;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -32,6 +32,8 @@ public class TripFileDAO {
 	public void init() {
 		// Retrieve an input stream from the servlet context
 		// rather than directly from the file system
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+
 		try (InputStream is = wac.getServletContext().getResourceAsStream(FILE_NAME);
 				BufferedReader buf = new BufferedReader(new InputStreamReader(is));
 				) {
@@ -41,8 +43,9 @@ public class TripFileDAO {
 				String[] tokens = line.split(",");
 				String city = tokens[1];
 				String state = tokens[2];
-				String startDate = tokens[3];
-				String endDate = tokens[4];
+				LocalDate startDate = LocalDate.parse(tokens[3], formatter);
+				System.out.println(startDate);
+				LocalDate endDate = LocalDate.parse(tokens[4], formatter);
 				System.out.println("" + city + state + startDate + endDate);
 				trips.put(index++, new Trip(city, state, startDate, endDate));
 			}

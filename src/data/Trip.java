@@ -1,24 +1,31 @@
 package data;
 
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+
 public class Trip {
 	private static int counter;
 	private int index;
 	private String city;
 	private String state;
-	private String startDate;
-	private String endDate;
+	@DateTimeFormat(pattern = "MM/dd/yyyy")
+	private LocalDate startDate;
+	@DateTimeFormat(pattern = "MM/dd/yyyy")
+	private LocalDate endDate;
 	
 	public Trip(){
 		this.index = ++counter;
 	}
 	
-	public Trip(String city, String state, String startDate, String endDate) {
+	public Trip(String city, String state, LocalDate startDate, LocalDate endDate) {
 		this.index = ++counter;
 		System.out.println("making trip objs: " + counter);
 		this.city = city;
 		this.state = state;
-		this.startDate = startDate;
-		this.endDate = endDate;
+		this.setStartDate(startDate);
+		this.setEndDate(endDate);
 	}
 	public String getCity() {
 		return city;
@@ -32,18 +39,8 @@ public class Trip {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public String getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
-	}
-	public String getEndDate() {
-		return endDate;
-	}
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
-	}
+	
+
 	public int getIndex() {
 		return index;
 	}
@@ -55,5 +52,21 @@ public class Trip {
 	}
 	public static void setCounter(int counter) {
 		Trip.counter = counter;
+	}
+
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
+
+	public LocalDate getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
 	}
 }

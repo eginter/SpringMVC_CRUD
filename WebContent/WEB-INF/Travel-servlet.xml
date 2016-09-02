@@ -11,4 +11,6 @@
 	<context:component-scan base-package="web"/>
 
 	<bean id="dao" class="data.TripFileDAO"/>
+	<bean id="tdao" class="data.TripDetailsDAO"/>
+	
 </beans>
