@@ -48,8 +48,8 @@
 					<div class="post-description">
 						<p>
 						<form action="AddTrip.do" method="POST">
-							City: <input type="text" name="city" value="Macon" /><br />
-							State: <input type="text" name="state" value="GA" /><br />
+							City: <input type="text" name="city" value="${param.city}" /><br />
+							State: <input type="text" name="state" value="${param.state}" /><br />
 							Start: <input type="date" name="startDate" value="2016-12-12" /><br />
 							End: <input type="date" name="endDate" value="2016-12-25" /><br />
 

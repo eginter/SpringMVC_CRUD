@@ -48,7 +48,7 @@
 
 					<div class="post-description">
 						<p>
-						<form action="EditTrip.do" method="POST">
+						<form class="pure-form" action="EditTrip.do" method="POST">
 		<c:forEach var="trip" items="${sessionScope.triplist}">
 			<c:choose>
     				<c:when test="${param.tripID == trip.value.index}">

@@ -54,6 +54,7 @@
 
 						<div class="post-description">
 							<p>
+								${randomRecTrips.state}
 								<div class="pure-g">
 										<div class="pure-u-1-3 post-title"><p>Location:</p></div>
 										<div class="pure-u-1-3 post-title"><p>Start:</p></div>
@@ -80,14 +81,14 @@
 						<div class="post-description">
 							<div class="post-images pure-g">
 								<div class="pure-u-1 pure-u-md-1-2">
-									<a href="http://www.flickr.com/photos/uberlife/8915936174/">
-										<img alt="Photo of someone working poolside at a resort"
+									<a href="add.jsp?city=${randomRecTrips.city}&state=${randomRecTrips.state}">
+										<img alt=""
 										class="pure-img-responsive"
-										src="http://farm8.staticflickr.com/7448/8915936174_8d54ec76c6.jpg">
+										src="img/${randomRecTrips.imgUrl}">
 									</a>
 
 									<div class="post-image-meta">
-										<h3>CSSConf Photos</h3>
+										<h3>${randomRecTrips.city}, ${randomRecTrips.state}</h3>
 									</div>
 								</div>
 

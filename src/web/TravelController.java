@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import data.ReccomendedTrip;
+import data.ReccomendedTripDAO;
 import data.Trip;
 import data.TripFileDAO;
 
 @Controller
-@SessionAttributes("triplist")
+@SessionAttributes({"triplist" , "rectriplist"})
 public class TravelController {
 
 	@ModelAttribute("triplist")
@@ -26,14 +28,28 @@ public class TravelController {
 		HashMap<Integer, Trip> trips = tripDao.getTrips();
 		return trips;
 	}
+	
+	@ModelAttribute("rectriplist") 
+	public HashMap<Integer, ReccomendedTrip> initRecList() {
+		System.out.println("DEBUG: initRecList");
+		HashMap<Integer, ReccomendedTrip> recTrips = recTripDao.getRecommendations();
+		System.out.println(recTrips);
+		return recTrips;
+	}
 
 	@Autowired
 	private TripFileDAO tripDao;
+	@Autowired
+	private ReccomendedTripDAO recTripDao;
 
 	@RequestMapping("GetTrip.do")
-	public ModelAndView loadTrip(@ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
+	public ModelAndView loadTrip(@ModelAttribute("rectriplist") HashMap<Integer, Trip> recTrips,
+								@ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
 		ModelAndView mv = new ModelAndView("results.jsp");
 		System.out.println(trips);
+		int random = (int)(Math.random() * recTrips.size()+1);
+		System.out.println("random: " + random);
+		mv.addObject("randomRecTrips", recTrips.get(random));
 		mv.addObject("trips", trips);
 		System.out.println("Loaded trip");
 		return mv;
