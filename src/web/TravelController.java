@@ -19,7 +19,7 @@ import data.Trip;
 import data.TripFileDAO;
 
 @Controller
-@SessionAttributes({"triplist" , "rectriplist"})
+@SessionAttributes({ "triplist", "rectriplist" })
 public class TravelController {
 
 	@ModelAttribute("triplist")
@@ -28,8 +28,8 @@ public class TravelController {
 		HashMap<Integer, Trip> trips = tripDao.getTrips();
 		return trips;
 	}
-	
-	@ModelAttribute("rectriplist") 
+
+	@ModelAttribute("rectriplist")
 	public HashMap<Integer, ReccomendedTrip> initRecList() {
 		System.out.println("DEBUG: initRecList");
 		HashMap<Integer, ReccomendedTrip> recTrips = recTripDao.getRecommendations();
@@ -44,12 +44,17 @@ public class TravelController {
 
 	@RequestMapping("GetTrip.do")
 	public ModelAndView loadTrip(@ModelAttribute("rectriplist") HashMap<Integer, Trip> recTrips,
-								@ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
+			@ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
 		ModelAndView mv = new ModelAndView("results.jsp");
 		System.out.println(trips);
-		int random = (int)(Math.random() * recTrips.size()+1);
+		int random = (int) (Math.random() * recTrips.size() + 1);
+		int random2;
+		do {
+			random2 = (int) (Math.random() * recTrips.size() + 1);
+		} while (random == random2);
 		System.out.println("random: " + random);
 		mv.addObject("randomRecTrips", recTrips.get(random));
+		mv.addObject("randomRecTrips2", recTrips.get(random2));
 		mv.addObject("trips", trips);
 		System.out.println("Loaded trip");
 		return mv;

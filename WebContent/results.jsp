@@ -31,7 +31,7 @@
 						<li class="nav-item"><a class="pure-button" href="edit.jsp">Edit</a>
 						</li>
 						<li class="nav-item"><a class="pure-button"
-							href="results.jsp">List</a></li>
+							href="GetTrip.do">List</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -93,15 +93,16 @@
 								</div>
 
 								<div class="pure-u-1 pure-u-md-1-2">
-									<a href="http://www.flickr.com/photos/uberlife/8907351301/">
-										<img alt="Photo of the sunset on the beach"
+									<a href="add.jsp?city=${randomRecTrips2.city}&state=${randomRecTrips2.state}">
+										<img alt=""
 										class="pure-img-responsive"
-										src="http://farm8.staticflickr.com/7382/8907351301_bd7460cffb.jpg">
+										src="img/${randomRecTrips2.imgUrl}">
 									</a>
 
 									<div class="post-image-meta">
-										<h3>JSConf Photos</h3>
+										<h3>${randomRecTrips2.city}, ${randomRecTrips2.state}</h3>
 									</div>
+
 								</div>
 							</div>
 						</div>
