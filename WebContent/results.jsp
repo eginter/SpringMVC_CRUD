@@ -54,11 +54,16 @@
 
 						<div class="post-description">
 							<p>
-								<ul>
+								<div class="pure-g">
+										<div class="pure-u-1-3 post-title"><p>Location:</p></div>
+										<div class="pure-u-1-3 post-title"><p>Start:</p></div>
+										<div class="pure-u-1-3 post-title"><p>End:</p></div>
 									<c:forEach var="trip" items="${sessionScope.triplist}">
-										<li>${trip.value.city}</li>
+    										<div class="pure-u-1-3"><h3>${trip.value.city}, ${trip.value.state}</h3></div>
+    										<div class="pure-u-1-3"><p>${trip.value.startDate}</p></div>
+    										<div class="pure-u-1-3"><p>${trip.value.endDate}</p></div>
 									</c:forEach>
-								</ul>
+								</div>
 							</p>
 
 						</div>
@@ -66,7 +71,7 @@
 				</div>
 
 				<div class="posts">
-					<h1 class="content-subhead">Recent Posts</h1>
+					<h1 class="content-subhead">Recommendations</h1>
 
 
 
