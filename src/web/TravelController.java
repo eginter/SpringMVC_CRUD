@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import data.JsonDAO;
 import data.RecommendedTrip;
 import data.RecommendedTripDAO;
 import data.Trip;
@@ -99,9 +100,11 @@ public class TravelController {
 			@RequestParam(value = "editview", required = false) boolean editview,
 			@RequestParam(value = "add", required = false) boolean add,
 			@RequestParam(value = "list", required = false) boolean list,
+			@RequestParam(value = "details", required = false) boolean details,
 			@RequestParam(value = "city", required = false) String city,
 			@RequestParam(value = "state", required = false) String state,
 			@ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
+		ModelAndView mv = new ModelAndView("results.jsp");
 		String snippet = "";
 
 		if (edit) {
@@ -111,7 +114,10 @@ public class TravelController {
 			snippet = "editview.jsp";
 		}
 		if (add) {
-			if (city == null) {
+			if (city != null) {
+				
+				mv.addObject("yelp", new JsonDAO().parseYelp(city));
+			} else {
 				city = state = "";
 			}
 			snippet = "add.jsp?city=" + city + "&state=" + state;
@@ -119,8 +125,11 @@ public class TravelController {
 		if (list) {
 			snippet = "list.jsp";
 		}
+		if (details) {
+			snippet = "details.jsp";
+			mv.addObject("yelp", new JsonDAO().parseYelp(city));
+		}
 
-		ModelAndView mv = new ModelAndView("results.jsp");
 		RecommendedTrip[] rt = recTripDao.getRandomTrips();
 		mv.addObject("randomRecTrips", rt[0]);
 		mv.addObject("randomRecTrips2", rt[1]);

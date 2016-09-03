@@ -29,9 +29,10 @@ import com.beust.jcommander.Parameter;
 public class YelpAPI {
 
   private static final String API_HOST = "api.yelp.com";
-  private static final String DEFAULT_TERM = "dinner";
+  private static String[] terms = {"arts","nightlife","food","shopping"};
+  private static final String DEFAULT_TERM = terms[(int)(Math.random() * (terms.length))];
   private static String DEFAULT_LOCATION = "San Francisco, CA";
-  private static final int SEARCH_LIMIT = 3;
+  private static final int SEARCH_LIMIT = 1;
   private static final String SEARCH_PATH = "/v2/search";
   private static final String BUSINESS_PATH = "/v2/business";
 
