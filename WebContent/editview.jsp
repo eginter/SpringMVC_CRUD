@@ -16,7 +16,11 @@
 					value="${trip.value.index}"></li>
 				<li><input type="submit" value="submit"></li>
 				<li><input type="submit" name="delete" value="Delete"></li>
+				<iframe width="450" height="250" frameborder="0" style="border: 0"
+					src="https://www.google.com/maps/embed/v1/search?key=AIzaSyBSZ6I-8PramlLicQV2zY1ykm8EpcQJ_ko&q=${trip.value.city}+${trip.value.state}"
+					allowfullscreen> </iframe>
 			</c:when>
 		</c:choose>
 	</c:forEach>
 </form>
+
