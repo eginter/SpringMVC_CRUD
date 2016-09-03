@@ -26,12 +26,12 @@
 
 				<nav class="nav">
 					<ul class="nav-list">
-						<li class="nav-item"><a class="pure-button" href="add.jsp">Add</a>
+						<li class="nav-item"><a class="pure-button"  href="GeneratePage.do?add=true">Add</a>
 						</li>
-						<li class="nav-item"><a class="pure-button" href="edit.jsp">Edit</a>
+						<li class="nav-item"><a class="pure-button" href="GeneratePage.do?edit=true">Edit</a>
 						</li>
 						<li class="nav-item"><a class="pure-button"
-							href="GetTrip.do">List</a></li>
+							href="GeneratePage.do?list=true">List</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -53,18 +53,8 @@
 						</header>
 
 						<div class="post-description">
-							<p>
-								${randomRecTrips.state}
-								<div class="pure-g">
-										<div class="pure-u-1-3 post-title"><p>Location:</p></div>
-										<div class="pure-u-1-3 post-title"><p>Start:</p></div>
-										<div class="pure-u-1-3 post-title"><p>End:</p></div>
-									<c:forEach var="trip" items="${sessionScope.triplist}">
-    										<div class="pure-u-1-3"><h3>${trip.value.city}, ${trip.value.state}</h3></div>
-    										<div class="pure-u-1-3"><p>${trip.value.startDate}</p></div>
-    										<div class="pure-u-1-3"><p>${trip.value.endDate}</p></div>
-									</c:forEach>
-								</div>
+							<p>	
+								<jsp:include page="${snippet}" />
 							</p>
 
 						</div>
@@ -81,7 +71,7 @@
 						<div class="post-description">
 							<div class="post-images pure-g">
 								<div class="pure-u-1 pure-u-md-1-2">
-									<a href="add.jsp?city=${randomRecTrips.city}&state=${randomRecTrips.state}">
+									<a href="GeneratePage.do?add=true&city=${randomRecTrips.city}&state=${randomRecTrips.state}">
 										<img alt=""
 										class="pure-img-responsive"
 										src="img/${randomRecTrips.imgUrl}">
@@ -93,7 +83,7 @@
 								</div>
 
 								<div class="pure-u-1 pure-u-md-1-2">
-									<a href="add.jsp?city=${randomRecTrips2.city}&state=${randomRecTrips2.state}">
+									<a href="GeneratePage.do?add=true&city=${randomRecTrips2.city}&state=${randomRecTrips2.state}">
 										<img alt=""
 										class="pure-img-responsive"
 										src="img/${randomRecTrips2.imgUrl}">

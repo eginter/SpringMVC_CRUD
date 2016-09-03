@@ -10,9 +10,9 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.WebApplicationContext;
 
-public class ReccomendedTripDAO {
+public class RecommendedTripDAO {
 	private static final String FILE_NAME = "/WEB-INF/recommendations.csv";
-	private HashMap<Integer, ReccomendedTrip> recommendations = new HashMap<>();
+	private HashMap<Integer, RecommendedTrip> recommendations = new HashMap<>();
 	
 	@Autowired
 	private WebApplicationContext wac;
@@ -30,7 +30,7 @@ public class ReccomendedTripDAO {
 				String city = tokens[0];
 				String state = tokens[1];
 				String imgUrl = tokens[2];
-				recommendations.put(index++, new ReccomendedTrip(city, state, imgUrl));
+				recommendations.put(index++, new RecommendedTrip(city, state, imgUrl));
 				System.out.println(recommendations);
 			}
 		} catch (Exception e) {
@@ -40,14 +40,26 @@ public class ReccomendedTripDAO {
 		}
 	}
 
-	public HashMap<Integer, ReccomendedTrip> getRecommendations() {
+	public HashMap<Integer, RecommendedTrip> getRecommendations() {
 		return recommendations;
 	}
 
-	public void setRecommendations(HashMap<Integer, ReccomendedTrip> recommendations) {
+	public void setRecommendations(HashMap<Integer, RecommendedTrip> recommendations) {
 		this.recommendations = recommendations;
 	}
 	
+	public RecommendedTrip[] getRandomTrips() {
+		int random = (int) (Math.random() * getRecommendations().size() + 1);
+		int random2;
+		do {
+			random2 = (int) (Math.random() * getRecommendations().size() + 1);
+		} while (random == random2);
+		RecommendedTrip[] trips = new RecommendedTrip[2];
+		trips[0] = getRecommendations().get(random);
+		trips[1] = getRecommendations().get(random2);
+		return trips;
+	
+	}
 
 }
 

@@ -1,9 +1,6 @@
 package web;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import data.ReccomendedTrip;
-import data.ReccomendedTripDAO;
+import data.RecommendedTrip;
+import data.RecommendedTripDAO;
 import data.Trip;
 import data.TripFileDAO;
 
@@ -30,9 +27,9 @@ public class TravelController {
 	}
 
 	@ModelAttribute("rectriplist")
-	public HashMap<Integer, ReccomendedTrip> initRecList() {
+	public HashMap<Integer, RecommendedTrip> initRecList() {
 		System.out.println("DEBUG: initRecList");
-		HashMap<Integer, ReccomendedTrip> recTrips = recTripDao.getRecommendations();
+		HashMap<Integer, RecommendedTrip> recTrips = recTripDao.getRecommendations();
 		System.out.println(recTrips);
 		return recTrips;
 	}
@@ -40,32 +37,34 @@ public class TravelController {
 	@Autowired
 	private TripFileDAO tripDao;
 	@Autowired
-	private ReccomendedTripDAO recTripDao;
+	private RecommendedTripDAO recTripDao;
 
 	@RequestMapping("GetTrip.do")
 	public ModelAndView loadTrip(@ModelAttribute("rectriplist") HashMap<Integer, Trip> recTrips,
 			@ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
 		ModelAndView mv = new ModelAndView("results.jsp");
 		System.out.println(trips);
-		int random = (int) (Math.random() * recTrips.size() + 1);
-		int random2;
-		do {
-			random2 = (int) (Math.random() * recTrips.size() + 1);
-		} while (random == random2);
-		System.out.println("random: " + random);
-		mv.addObject("randomRecTrips", recTrips.get(random));
-		mv.addObject("randomRecTrips2", recTrips.get(random2));
+		RecommendedTrip[] rt = recTripDao.getRandomTrips();
+		mv.addObject("randomRecTrips", rt[0]);
+		mv.addObject("randomRecTrips2", rt[1]);
 		mv.addObject("trips", trips);
+		mv.addObject("snippet", "list.jsp");
 		System.out.println("Loaded trip");
 		return mv;
 	}
 
 	@RequestMapping(path = "AddTrip.do", method = RequestMethod.POST)
-	public ModelAndView addTrip(Trip trip, @ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
+	public ModelAndView addTrip(Trip trip, @ModelAttribute("rectriplist") HashMap<Integer, Trip> recTrips,
+			@ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
+		loadTrip(recTrips, trips);
 		tripDao.addTrip(trip);
 		trips = tripDao.getTrips();
 		System.out.println("Adding Trip");
 		ModelAndView mv = new ModelAndView("results.jsp");
+		RecommendedTrip[] rt = recTripDao.getRandomTrips();
+		mv.addObject("randomRecTrips", rt[0]);
+		mv.addObject("randomRecTrips2", rt[1]);
+		mv.addObject("snippet", "list.jsp");
 		return mv;
 	}
 
@@ -73,7 +72,9 @@ public class TravelController {
 	public ModelAndView editTrip(@RequestParam("index") int index, @RequestParam("city") String city,
 			@RequestParam("state") String state, @RequestParam("startDate") String startDate,
 			@RequestParam("endDate") String endDate, @RequestParam(value = "delete", required = false) String delete,
-			@ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
+			@ModelAttribute("triplist") HashMap<Integer, Trip> trips,
+			@ModelAttribute("rectriplist") HashMap<Integer, Trip> recTrips) {
+		loadTrip(recTrips, trips);
 		System.out.println("Index is : " + index);
 		Trip temp = tripDao.getTripByIndex(index);
 		if (delete != null) {
@@ -85,11 +86,46 @@ public class TravelController {
 			temp.setStartDate(startDate);
 			temp.setEndDate(endDate);
 		}
-		System.out.println("Editing Trip");
-		System.out.println("delete = " + delete);
-
 		ModelAndView mv = new ModelAndView("results.jsp");
+		RecommendedTrip[] rt = recTripDao.getRandomTrips();
+		mv.addObject("randomRecTrips", rt[0]);
+		mv.addObject("randomRecTrips2", rt[1]);
+		mv.addObject("snippet", "list.jsp");
 		return mv;
 	}
 
+	@RequestMapping(path = "GeneratePage.do", method = RequestMethod.GET)
+	public ModelAndView makePage(@RequestParam(value = "edit", required = false) boolean edit,
+			@RequestParam(value = "editview", required = false) boolean editview,
+			@RequestParam(value = "add", required = false) boolean add,
+			@RequestParam(value = "list", required = false) boolean list,
+			@RequestParam(value = "city", required = false) String city,
+			@RequestParam(value = "state", required = false) String state,
+			@ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
+		String snippet = "";
+
+		if (edit) {
+			snippet = "edit.jsp";
+		}
+		if (editview) {
+			snippet = "editview.jsp";
+		}
+		if (add) {
+			if (city == null) {
+				city = state = "";
+			}
+			snippet = "add.jsp?city=" + city + "&state=" + state;
+		}
+		if (list) {
+			snippet = "list.jsp";
+		}
+
+		ModelAndView mv = new ModelAndView("results.jsp");
+		RecommendedTrip[] rt = recTripDao.getRandomTrips();
+		mv.addObject("randomRecTrips", rt[0]);
+		mv.addObject("randomRecTrips2", rt[1]);
+		mv.addObject("triplist", trips);
+		mv.addObject("snippet", snippet);
+		return mv;
+	}
 }

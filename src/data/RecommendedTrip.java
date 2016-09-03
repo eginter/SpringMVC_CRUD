@@ -1,15 +1,15 @@
 package data;
 
-public class ReccomendedTrip {
+public class RecommendedTrip {
 	String city;
 	String state;
 	String imgUrl;
 	
-	public ReccomendedTrip() {
+	public RecommendedTrip() {
 		System.out.println("In rec constructor");
 	}
 	
-	public ReccomendedTrip(String city, String state, String imgUrl) {
+	public RecommendedTrip(String city, String state, String imgUrl) {
 		System.out.println("In rec constructor");
 		this.city = city;
 		this.state = state;
