@@ -1,9 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<form>
+<form class="details">
 	<c:forEach var="trip" items="${sessionScope.triplist}">
 		<c:choose>
 			<c:when test="${param.city == trip.value.city}">
+				<li>Welcome to:</li>
 				<li>${trip.value.city}</li>
 				<li>${trip.value.state}</li>
 				<li>${trip.value.startDate}</li>

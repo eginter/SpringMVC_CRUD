@@ -48,7 +48,7 @@
 						<header class="post-header">
 
 
-							<h2 class="post-title">Upcoming Trips:</h2>
+							
 
 						</header>
 

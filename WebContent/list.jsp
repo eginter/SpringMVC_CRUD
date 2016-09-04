@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<h2 class="post-title">Upcoming Trips:</h2>
+
 <div class="pure-g">
 	<div class="pure-u-1-3 post-title">
 		<p>Location:</p>
