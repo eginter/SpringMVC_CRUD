@@ -6,6 +6,6 @@
 
 	<ul>
 		<c:forEach var="trip" items="${sessionScope.triplist}">
-			<li><a href="GeneratePage.do?editview=true&tripID=${trip.key}">${trip.value.city}</a></li>
+			<li><h3><a href="GeneratePage.do?editview=true&tripID=${trip.key}">${trip.value.city}, ${trip.value.state}</a></h3></li>
 		</c:forEach>
 	</ul>
