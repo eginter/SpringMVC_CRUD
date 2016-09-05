@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<form action="AddTrip.do" method="POST">
+<%@ taglib uri="http://www.springframework.org/tags/form"
+     prefix="form"%>
+<h2 class="post-title">Add a Trip:</h2>
+<form class="pure-form-stacked" action="AddTrip.do" method="POST">
 	City: <input type="text" name="city" value="${param.city}" /><br />
 	State: <input list="states" name="state" value="${param.state}" /><br />
 	<datalist id="states">
@@ -61,4 +63,3 @@
 		type="date" name="endDate" value="" /><br /> <input type="submit"
 		value="Add Trip" />
 </form>
-

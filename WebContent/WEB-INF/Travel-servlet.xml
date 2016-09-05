@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<context:component-scan base-package="web"/>
-
+	<mvc:annotation-driven /> 
 	<bean id="dao" class="data.TripFileDAO"/>
 	<bean id="dao2" class="data.RecommendedTripDAO"/>
 </beans>

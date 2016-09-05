@@ -1,6 +1,6 @@
 index,city,state,start,end
-1,Buffalo,NY,2016-09-07,2016-09-21
-2,Atlanta,GA,2016-09-07,2016-09-21
-3,Denver,CO,2016-09-07,2016-09-21
-4,San Antonio,TX,2016-09-07,2016-09-21
-5,Chico,CA,2016-09-07,2016-09-21
+1,Buffalo,New York,2016-09-07,2016-09-21
+2,Atlanta,Georgia,2016-10-11,2016-10-21
+3,Denver,Colorado,2016-12-23,2016-12-28
+4,San Antonio,Texas,2017-01-07,2017-03-21
+5,Chico,California,2017-03-01,2017-03-04

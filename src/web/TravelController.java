@@ -41,7 +41,7 @@ public class TravelController {
 	private RecommendedTripDAO recTripDao;
 
 	@RequestMapping("GetTrip.do")
-	public ModelAndView loadTrip(@ModelAttribute("rectriplist") HashMap<Integer, Trip> recTrips,
+	public ModelAndView loadTrip(@ModelAttribute("rectriplist") HashMap<Integer, RecommendedTrip> recTrips,
 			@ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
 		ModelAndView mv = new ModelAndView("results.jsp");
 		System.out.println(trips);
@@ -55,7 +55,7 @@ public class TravelController {
 	}
 
 	@RequestMapping(path = "AddTrip.do", method = RequestMethod.POST)
-	public ModelAndView addTrip(Trip trip, @ModelAttribute("rectriplist") HashMap<Integer, Trip> recTrips,
+	public ModelAndView addTrip(Trip trip, @ModelAttribute("rectriplist") HashMap<Integer, RecommendedTrip> recTrips,
 			@ModelAttribute("triplist") HashMap<Integer, Trip> trips) {
 		loadTrip(recTrips, trips);
 		tripDao.addTrip(trip);
@@ -74,7 +74,7 @@ public class TravelController {
 			@RequestParam("state") String state, @RequestParam("startDate") String startDate,
 			@RequestParam("endDate") String endDate, @RequestParam(value = "delete", required = false) String delete,
 			@ModelAttribute("triplist") HashMap<Integer, Trip> trips,
-			@ModelAttribute("rectriplist") HashMap<Integer, Trip> recTrips) {
+			@ModelAttribute("rectriplist") HashMap<Integer, RecommendedTrip> recTrips) {
 		loadTrip(recTrips, trips);
 		System.out.println("Index is : " + index);
 		Trip temp = tripDao.getTripByIndex(index);
@@ -115,8 +115,6 @@ public class TravelController {
 		}
 		if (add) {
 			if (city != null) {
-				
-				mv.addObject("yelp", new JsonDAO().parseYelp(city));
 			} else {
 				city = state = "";
 			}

@@ -13,6 +13,13 @@ a:focus {
     text-decoration: underline;
 }
 
+div > #map {
+      text-align: -webkit-center;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+}
+
 h3 {
     font-weight: 100;
 }
@@ -22,6 +29,18 @@ ul {
 	display: inline-block;
 }
 
+.pure-u-4-5.yelp-id {
+    text-transform: capitalize;
+    font-size: 1.5em;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.yelp{
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
 /* LAYOUT CSS */
 .pure-img-responsive {
     max-width: 100%;
@@ -39,7 +58,7 @@ ul {
 }
 
 .sidebar {
-    background: rgb(61, 79, 93);
+    background: rgb(55, 106, 150);
     color: #fff;
 }
 
@@ -82,6 +101,18 @@ ul {
 .nav-item a:focus {
     border: 2px solid rgb(61, 146, 201);
     text-decoration: none;
+}
+
+.welcome{
+  font-style: italic;
+  font-size: 1.2em;
+}
+
+.city {
+    font-size: 4em;
+    text-align: center;
+    font-family: cursive;
+    font-weight: bolder;
 }
 
 .content-subhead {
@@ -153,6 +184,10 @@ ul {
     margin-left: 1em;
     color: #fff;
     text-shadow: 0 1px 1px #333;
+}
+
+.pure-u-1.date {
+    text-align: center;
 }
 
 .footer {
