@@ -5,7 +5,7 @@ Skill Distillery Week 7 Project: MVC_CRUD
 Elijah Ginter
 
 # Overview
-My second Java web application in the Skill Distillery course was a Presidents of the U.S. showcase. 
+My second Java web application in the Skill Distillery course was a SpringMVC CRUD application. This one in particular is a Travel Planner. 
 
 Front-end:
 - HTML5
