@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import data.JsonDAO;
 import data.RecommendedTrip;
-import data.RecommendedTripDAO;
+import data.RecommendedTripDbDAO;
 import data.Trip;
 import data.TripDAO;
 
@@ -19,7 +19,7 @@ public class TravelController {
 	@Autowired
 	private TripDAO tripDao;
 	@Autowired
-	private RecommendedTripDAO recTripDao;
+	private RecommendedTripDbDAO recTripDao;
 
 	@RequestMapping("GetTrip.do")
 	public ModelAndView loadTrip() {

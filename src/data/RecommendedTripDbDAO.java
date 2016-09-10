@@ -15,6 +15,13 @@ public class RecommendedTripDbDAO {
 	private static final String pass = "application";
 
 	public RecommendedTripDbDAO() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(System.err);
+		}
 		// TODO Auto-generated constructor stub
 	}
 
@@ -23,12 +30,11 @@ public class RecommendedTripDbDAO {
 	@PostConstruct
 	public void init() {
 		try {
-
+			System.out.println("Making recommendations");
 			Connection conn;
 			conn = DriverManager.getConnection(url, user, pass);
 			String sqltxt;
-			sqltxt = "SELECT l.city, l.state r.img_url," + "FROM recommendation r " + "JOIN location l "
-					+ "ON r.location_id = l.id";
+			sqltxt = "SELECT l.city, l.state, r.img_url FROM recommendation r JOIN location l ON r.location_id = l.id";
 			PreparedStatement stmt = conn.prepareStatement(sqltxt);
 			ResultSet rs = stmt.executeQuery();
 			int index = 1;
