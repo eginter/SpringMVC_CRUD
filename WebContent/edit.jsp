@@ -5,7 +5,7 @@
 <h2 class="post-title">Click on a trip to edit:</h2>
 
 	<ul>
-		<c:forEach var="trip" items="${sessionScope.triplist}">
-			<li><h3><a href="GeneratePage.do?editview=true&tripID=${trip.key}">${trip.value.city}, ${trip.value.state}</a></h3></li>
+		<c:forEach var="trip" items="${triplist}">
+			<li><h3><a href="GeneratePage.do?action=editview&index=${trip.value.index}">${trip.value.city}, ${trip.value.state}</a></h3></li>
 		</c:forEach>
 	</ul>

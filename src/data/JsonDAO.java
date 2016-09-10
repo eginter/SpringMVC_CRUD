@@ -12,8 +12,9 @@ public class JsonDAO {
 		YelpAPI.setDEFAULT_LOCATION(location);
 		YelpAPI.YelpAPICLI yelpApiCli = new YelpAPICLI();
 
+		
 		YelpAPI yelpApi = new YelpAPI("sF2kY12N-TMqvet0kKv8QA", "Hol3KlgbKozzsNvbHk9OUTJYARM",
-				"5fVlH6zvGE_McmvBqki2-DllBykAWA6X", "xN7ZF-NipbV0axN_uCd03mT6YPE");
+				"g21zjbwWoWOgbTOru2weANzqBixou2_-", "XK1s56gRyI9onbO_SsnPiyqLIuk");
 
 		JSONParser parser = new JSONParser();
 		JSONObject json = null;

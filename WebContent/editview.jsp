@@ -3,9 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <form class="pure-form-stacked" action="EditTrip.do" method="POST">
-	<c:forEach var="trip" items="${sessionScope.triplist}">
+	<c:forEach var="trip" items="${triplist}">
 		<c:choose>
-			<c:when test="${param.tripID == trip.value.index}">
+			<c:when test="${param.index == trip.value.index}">
 				<input type="text" name="city" value="${trip.value.city}">
 				<input type="text" name="state" value="${trip.value.state}">
 				<input type="date" name="startDate"

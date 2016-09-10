@@ -10,6 +10,6 @@
 
 	<context:component-scan base-package="web"/>
 	<mvc:annotation-driven /> 
-	<bean id="dao" class="data.TripFileDAO"/>
+	<bean id="dao" class="data.TripDbDAO"/>
 	<bean id="dao2" class="data.RecommendedTripDAO"/>
 </beans>

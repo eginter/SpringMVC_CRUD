@@ -11,7 +11,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.WebApplicationContext;
 
-public class TripFileDAO {
+public class TripFileDAO implements TripDAO {
 	private static final String FILE_NAME = "/WEB-INF/travel.csv";
 	private HashMap<Integer, Trip> trips = new HashMap<>();
 	/*

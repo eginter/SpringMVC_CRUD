@@ -1,7 +1,6 @@
 package data;
 
 public class Trip {
-	private static int counter;
 	private int index;
 	private String city;
 	private String state;
@@ -9,12 +8,12 @@ public class Trip {
 	private String endDate;
 	
 	public Trip(){
-		this.index = ++counter;
+//		this.index = ++counter;
 	}
 	
-	public Trip(String city, String state, String startDate, String endDate) {
-		this.index = ++counter;
-		System.out.println("making trip objs: " + counter);
+	public Trip(int index, String city, String state, String startDate, String endDate) {
+		this.index = index;
+		System.out.println("making trip objs: " + index);
 		this.city = city;
 		this.state = state;
 		this.startDate = startDate;
@@ -50,10 +49,5 @@ public class Trip {
 	public void setIndex(int index) {
 		this.index = index;
 	}
-	public static int getCounter() {
-		return counter;
-	}
-	public static void setCounter(int counter) {
-		Trip.counter = counter;
-	}
+
 }

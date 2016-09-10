@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form"
-     prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!DOCTYPE html>
 <html>
@@ -13,12 +12,11 @@
 	href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
 <link rel="stylesheet" href="css/layouts/blog.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Trip List</title>
+<title>Travel Planner</title>
 </head>
 
 
 <body>
-
 	<div id="layout" class="pure-g">
 		<div class="sidebar pure-u-1 pure-u-md-1-4">
 			<div class="header">
@@ -28,11 +26,11 @@
 				<nav class="nav">
 					<ul class="nav-list">
 						<li class="nav-item"><a class="pure-button"
-							href="GeneratePage.do?add=true">Add</a></li>
+							href="GeneratePage.do?action=add">Add</a></li>
 						<li class="nav-item"><a class="pure-button"
-							href="GeneratePage.do?edit=true">Edit</a></li>
+							href="GeneratePage.do?action=edit">Edit</a></li>
 						<li class="nav-item"><a class="pure-button"
-							href="GeneratePage.do?list=true">List</a></li>
+							href="GeneratePage.do?action=list">List</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -41,12 +39,12 @@
 		<div class="content pure-u-1 pure-u-md-3-4">
 			<div>
 				<!-- A wrapper for all the blog posts -->
-					<h1 class="content-subhead">Trip Planner</h1>
+				<h1 class="content-subhead">Trip Planner</h1>
 
-					<!-- A single blog post -->
+				<!-- A single blog post -->
 
-						<header class="post-header"> </header>
-							<jsp:include page="${snippet}" />
+				<header class="post-header"> </header>
+				<jsp:include page="${snippet}" />
 
 
 
@@ -61,7 +59,7 @@
 							<div class="post-images pure-g">
 								<div class="pure-u-1 pure-u-md-1-2">
 									<a
-										href="GeneratePage.do?add=true&city=${randomRecTrips.city}&state=${randomRecTrips.state}">
+										href="GeneratePage.do?action=add&city=${randomRecTrips.city}&state=${randomRecTrips.state}">
 										<img alt="" class="pure-img-responsive"
 										src="img/${randomRecTrips.imgUrl}">
 									</a>
@@ -73,7 +71,7 @@
 
 								<div class="pure-u-1 pure-u-md-1-2">
 									<a
-										href="GeneratePage.do?add=true&city=${randomRecTrips2.city}&state=${randomRecTrips2.state}">
+										href="GeneratePage.do?action=add&city=${randomRecTrips2.city}&state=${randomRecTrips2.state}">
 										<img alt="" class="pure-img-responsive"
 										src="img/${randomRecTrips2.imgUrl}">
 									</a>
