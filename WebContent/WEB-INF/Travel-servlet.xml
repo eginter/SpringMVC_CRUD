@@ -11,5 +11,5 @@
 	<context:component-scan base-package="web"/>
 	<mvc:annotation-driven /> 
 	<bean id="dao" class="data.TripDbDAO"/>
-	<bean id="dao2" class="data.RecommendedTripDAO"/>
+	<bean id="dao2" class="data.RecommendedTripDbDAO"/>
 </beans>
