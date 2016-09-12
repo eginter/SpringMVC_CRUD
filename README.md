@@ -17,6 +17,7 @@ Back-end:
 - Maven
 - Tomcat
 - Spring MVC
+- Update 09/10/2016: Migrated csv's to mySQL.
 
 # Features
 - Allows uses to create, read, update and delete travel plans.
